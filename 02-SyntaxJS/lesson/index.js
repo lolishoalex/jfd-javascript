@@ -36,4 +36,3 @@ console.log(ProgrammingLang);
 // JavaScript - регистрозависимый язык, есть большая разница между большой буквой и маленькой
 
 console.log(Name);
-console.log(teXt);
