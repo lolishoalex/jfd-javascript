@@ -25,10 +25,15 @@ var text = 'Hello World5';
 text = 'Hello';
 console.log(text);
 
-let name = 'Lola'; //можно переопределить, то есть присвоить новое значение
-name = 'Olga';
-console.log(name);
+let Name = 'Lola'; //можно переопределить, то есть присвоить новое значение
+Name = 'Olga';
+console.log(Name);
 
 const ProgrammingLang = 'JavaScript'; //нельзя переопределить
 console.log(ProgrammingLang);
 // ProgrammingLang = 'Java'; будет ошибка
+
+// JavaScript - регистрозависимый язык, есть большая разница между большой буквой и маленькой
+
+console.log(Name);
+console.log(teXt);
