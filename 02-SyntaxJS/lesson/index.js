@@ -18,3 +18,17 @@ console.log('Hello World5');
 console.log('Hello World5');
 console.log('Hello World5');
 console.log('Hello World5');*/
+
+// ПЕРЕМЕННЫЕ 3 типа - var(устаревшая), let, const
+
+var text = 'Hello World5';
+text = 'Hello';
+console.log(text);
+
+let name = 'Lola'; //можно переопределить, то есть присвоить новое значение
+name = 'Olga';
+console.log(name);
+
+const ProgrammingLang = 'JavaScript'; //нельзя переопределить
+console.log(ProgrammingLang);
+// ProgrammingLang = 'Java'; будет ошибка
