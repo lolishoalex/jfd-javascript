@@ -2,7 +2,7 @@
 const favoriteDrink = 'Coffee';
 console.log(favoriteDrink);
 
-// 2 number - число
+// 2 number - число, целочисленные значения ограничены диапазоном ±(253-1)
 const numberOfCups = 5;
 console.log(numberOfCups);
 
