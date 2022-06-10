@@ -54,4 +54,5 @@ console.log('undefined', Boolean(undefined));
 console.log('NaN', Boolean(NaN));
 console.log('0', Boolean(0));
 console.log('', Boolean('')); // значение будет false, потому что длина строчки 0
+
 console.log('0', Boolean('0')); // значение будет true, потому что длина строчки 1
