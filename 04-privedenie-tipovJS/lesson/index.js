@@ -37,3 +37,25 @@ console.log('expirienceInJaveScript:', typeof +expirienceInJaveScript);
 // не все значения можно преобразовать к типу данных число
 
 console.log('Hello World', Number('Hello World')); // будет выведено значение NaN - это not a number (не число)
+
+
+// 3. преобразование к boolean
+
+// явное преобразование
+
+console.log('Hello', Boolean('Hello')); // для преобразования к Boolean существует специальная функция Boolean()
+
+console.log('5', Boolean(5)); // почти все значения которые прпреобразовываются в Boolean, приводятся к true
+
+// значения которые прпреобразовываются в Boolean, приводятся к false - null, undefined, NaN, 0, ''
+
+console.log('null', Boolean(null));
+console.log('undefined', Boolean(undefined));
+console.log('NaN', Boolean(NaN));
+console.log('0', Boolean(0));
+console.log('', Boolean('')); // значение будет false, потому что длина строчки 0
+console.log('0', Boolean('0')); // значение будет true, потому что длина строчки 1
+
+
+
+
