@@ -31,11 +31,3 @@ const programingLang = 'JavaScript 1234'; // получаем длину дан�
 console.log('length', programingLang.length);
 
 console.log('1st', programingLang[5]); // получаем символы даной строки, изменять символы строки мы не можем
-
-
-
-
-
-
-
-
