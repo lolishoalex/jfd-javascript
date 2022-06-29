@@ -15,3 +15,15 @@ const multiplyByFive1 = (number) => number * 5;
 
 const result1 = multiplyByFive1(100)
 console.log('result1', result1)
+
+
+const ask = (question, yes, no) => {
+    if (confirm(question)) yes()
+    else no();
+  }
+  
+  ask(
+    "Вы согласны?",
+    function() { alert("Вы согласились."); },
+    function() { alert("Вы отменили выполнение."); }
+  );
