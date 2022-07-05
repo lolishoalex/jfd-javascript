@@ -111,22 +111,12 @@ const everySalaries1 = salariesOfDevelopers.every((salary) => {
 })
 console.log('everySalaries1', everySalaries1)
 
+//const salariesOfDevelopers = [400, 500, 600, 2000, 350]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Метод массивов reduce - принимает в себя колл-бэк (4 параметра), и начальное значение
+//acc - это наш второй параметр который равен 0
+const sum = salariesOfDevelopers.reduce((acc, salary, index, array) => {
+    console.log('acc/salary', acc, salary)
+    return acc + salary
+}, 0) // 0 - начальное значение acc
+console.log('sum', sum)
