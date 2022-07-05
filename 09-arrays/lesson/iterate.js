@@ -120,3 +120,51 @@ const sum = salariesOfDevelopers.reduce((acc, salary, index, array) => {
     return acc + salary
 }, 0) // 0 - начальное значение acc
 console.log('sum', sum)
+
+//Метод массивов sort - принимает в себя колл-бэк (2 элемента: a и b)
+//Cортирует массив в порядке возрастания или в порядке убивания
+//возвращает 3 значения: < 0, > 0, 0
+
+// сортировка по числам - колл-бэк обязателен
+
+salariesOfDevelopers.sort((a, b) => {
+    return a - b // сортируем по возрастанию
+    //return b - a // сортируем по убиванию
+})
+console.log('salariesOfDevelopers', salariesOfDevelopers)
+
+// сортировка по срокам - колл-бэк для сортировки по возрастанию НЕ обязателен/по убыванию обязателен
+
+salariesOfDevelopers.sort() //без колл-бэка
+//когда в метод sort не передается никакого колл-бэка, то все значения конвертируются в строки, поэтому все значения в массиве сравниваются как строки и сортируются по возрастанию 
+console.log('salariesOfDevelopers', salariesOfDevelopers)
+
+const developerNames1 = ['Maxim', 'Igor', 'Nastya', 'Irina']
+
+developerNames1.sort()//сортировка по возрастанию
+console.log('developerNames1', developerNames1)
+
+
+developerNames1.sort((a, b) => {//сортировка по возрастанию
+    if (a > b) {
+        return 1
+    }
+    if (a < b) {
+        return -1
+    }
+    return 0
+})
+console.log('developerNames1', developerNames1)
+
+developerNames1.sort((a, b) => {//сортировка по убыванию
+    if (a < b) {
+        return 1
+    }
+    if (a > b) {
+        return -1
+    }
+    return 0
+})
+console.log('developerNames1', developerNames1)
+
+//!!!Метод sort ИЗМЕНЯЕТ текущий массив!!!
