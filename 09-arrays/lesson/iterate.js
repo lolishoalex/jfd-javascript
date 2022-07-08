@@ -17,19 +17,17 @@ for (const name of developerNames) {
 }
 
 // 3-й способ с помощью функции forEach - самый современный и рекомендуемый
-// forEach принимаетв в себя коллбэк
+// forEach принимаетв в себя коллбэк, в ней три параметра
 
 //developerNames.forEach(() =>{})
 //или
 //developerNames.forEach(function(){})
 
-developerNames.forEach((name, index, array) =>{
+developerNames.forEach((name, index, array) => {
     //console.log('name', name)
     //console.log('index', index)
     console.log('array', array)
 })
-
-
 
 //Работа с методами массивов: 
 //map, filter, find, findIndex, some, every
