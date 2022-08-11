@@ -1,8 +1,3 @@
-/* Функция getTotalPriceOfShoppingBag должна возвращать общую стоимость 
-всех товаров в корзине с учетом скидок и с учетом указанных клиентом 
-количеством продуктов. Итоговое значение должно быть округлено до сотых. 
-Это можно сделать с помощью toFixed (https://developer.mozilla.org/...) */
-
 const groceries = {
    "Orange Juice": {
        price : 1.5,
@@ -21,33 +16,29 @@ const shoppingBag = [
  ]
 
 const getTotalPriceOfShoppingBag = (shoppingBag) => {
-    //сначала посчитать сумму товаров со скидкой
     const keysGroceries = Object.keys(groceries)
-    console.log('keysGroceries', keysGroceries) //debug
 
-    let sumOfProductDiscount = 0;
-    let groceriesKey = '';
+    let sum = 0
+    let sumAll = 0
 
     shoppingBag.forEach(prod => {
-        console.log('prod', prod.product)
+        console.log('prod', prod) //debug
         keysGroceries.forEach(key => {
-            groceriesKey = key
-            console.log('groceriesKey', groceriesKey) //debug
-            console.log('prod.product === groceriesKey', prod.product === groceriesKey) //debug
-            console.log(groceries.keysGroceries) //debug
-            /*if (prod.product === groceriesKey) {
-                sumOfProductDiscount = (prod.quantity * ...price) / ...discount
-            }*/
+            console.log('key', key) //debug
+            if (prod.product === key) {//да
+                sum = prod.quantity * groceries[key].price
+                console.log('sum', sum) //debug
+                sum =  Number((sum - (sum*(groceries[key].discount/100))).toFixed(2))//округляет до сотіх
+                console.log('sum', typeof sum, sum) //debug
+            }
         });
+        sumAll += sum
+        console.log('sumAll', sumAll) //debug
     });
 
-    //затем общую стоимость всех товаров
-    /* Использовать toFixed */
-    //return
-
+    return sumAll
 }
 
 const totalPrice = getTotalPriceOfShoppingBag(shoppingBag);
 console.log('totalPrice', totalPrice);
 // Возвращает 37.05
-

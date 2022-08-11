@@ -1,4 +1,4 @@
-// Перебор массивов с помощью for, for of и forEach
+// Перебор массивов с помощью for, for of и forEach reduce
 
 // 1-й способ с помощью цыкла for
 const developerNames = ['Maxim', 'Igor', 'Nastya', 'Irina']
