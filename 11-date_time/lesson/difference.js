@@ -26,3 +26,12 @@ console.log('endTime', endTime)
 
 const theDifference = endTime - startTime
 console.log('theDifference', theDifference)
+
+const date3 = Date(2009, 4, 20)//будет просто строка
+console.log('date3', typeof date3, date3)
+
+const date4 = new Date(2009, 4, 20)//будет обЪект
+console.log('date4', typeof date4, date4)
+
+//Время в UTC - new Date(Date.UTC(...)) с теми же аргументами
+//Значение свойства Date.length равно 7. Это количество аргументов, обрабатываемых конструктором.
