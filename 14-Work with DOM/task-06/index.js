@@ -281,6 +281,7 @@ function findIndex(taskId) {
 
     let themeColor = 0
     document.addEventListener('keydown', (event) => {
+      event.preventDefault()
       console.log(event)
       console.log(event.which)
       const { key } = event
