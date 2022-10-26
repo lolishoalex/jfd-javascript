@@ -22,33 +22,88 @@ class CustomSelect {
     }
 
     render(container) {
+        const selectDropdown = document.createElement('div')
+        selectDropdown.className = 'select-dropdown select-dropdown--123'
+        container.append(selectDropdown)
 
+        const selectDropdownButton = document.createElement('button')
+        selectDropdownButton.className = 'select-dropdown__button select-dropdown__button--123'
+        selectDropdown.append(selectDropdownButton)
+
+        const chooseElement = document.createElement('span')
+        chooseElement.className = 'select-dropdown select-dropdown--123'
+        chooseElement.textContent = 'Выберите Элемент'
+        selectDropdownButton.append(chooseElement)
+
+        const selectDropdownList = document.createElement('ul')
+        selectDropdownList.className = 'select-dropdown__list select-dropdown__list--123'
+        selectDropdown.append(selectDropdownList)
+
+        const selectDropdownListItem1 = document.createElement('li')
+        selectDropdownListItem1.className = 'select-dropdown__list-item'
+        selectDropdownListItem1.textContent = 'JavaScript'
+        selectDropdownListItem1.dataset.value = '1'
+        selectDropdownList.append(selectDropdownListItem1)
+
+        const selectDropdownListItem2 = document.createElement('li')
+        selectDropdownListItem2.className = 'select-dropdown__list-item'
+        selectDropdownListItem2.textContent = 'NodeJS'
+        selectDropdownListItem2.dataset.value = '2'
+        selectDropdownList.append(selectDropdownListItem2)
+
+        const selectDropdownListItem3 = document.createElement('li')
+        selectDropdownListItem3.className = 'select-dropdown__list-item'
+        selectDropdownListItem3.textContent = 'ReactJS'
+        selectDropdownListItem3.dataset.value = '3'
+        selectDropdownList.append(selectDropdownListItem3)
+
+        const selectDropdownListItem4 = document.createElement('li')
+        selectDropdownListItem4.className = 'select-dropdown__list-item'
+        selectDropdownListItem4.textContent = 'HTML'
+        selectDropdownListItem4.dataset.value = '4'
+        selectDropdownList.append(selectDropdownListItem4)
+
+        const selectDropdownListItem5 = document.createElement('li')
+        selectDropdownListItem5.className = 'select-dropdown__list-item'
+        selectDropdownListItem5.textContent = 'CSS'
+        selectDropdownListItem5.dataset.value = '5'
+        selectDropdownList.append(selectDropdownListItem5)
+        openAndCloseList()
+        chooseItemFromList()
     }
 }
 
-function htmlDropDownList() {
-    
-    const prevTasksList = document.querySelector(".tasks-list");
+function openAndCloseList() {
+    const selectDropdownButton = document.querySelector('.select-dropdown__button')
+    const selectDropdownList = document.querySelector('.select-dropdown__list')
 
-    const selectDropdown = document.createElement('div')
-    selectDropdown.className = 'select-dropdown select-dropdown--123'
-    
-    tasksList.prepend(taskItem)
-    
+    selectDropdownButton.addEventListener('click', (event) => {
+        console.log(event.target)
+        const { target } = event
+        selectDropdownList.classList.toggle('active')
+    })
 }
 
-{/* <div class="select-dropdown select-dropdown--123">
-       <button class="select-dropdown__button select-dropdown__button--123">
-           <span class="select-dropdown select-dropdown--123">Выберите Элемент</span>
-       </button>
-       <ul class="select-dropdown__list select-dropdown__list--123">
-           <li class="select-dropdown__list-item" data-value="1">JavaScript</li>
-           <li class="select-dropdown__list-item" data-value="2">NodeJS</li>
-           <li class="select-dropdown__list-item" data-value="3">ReactJS</li>
-           <li class="select-dropdown__list-item" data-value="4">HTML</li>
-           <li class="select-dropdown__list-item" data-value="5">CSS</li>
-       </ul>
-   </div> */}
+function chooseItemFromList() {
+    const selectDropdownList = document.querySelector('.select-dropdown__list')
+    const allItems = document.querySelectorAll('.select-dropdown__list-item')
+    selectDropdownList.addEventListener('click', (event) => {
+        const { target } = event
+        const item = target.closest('.select-dropdown__list-item')
+        const itemValue = item.dataset.value
+        console.log('itemValue', itemValue)
+        const selectDropdownText = document.querySelector('span')
+        selectDropdownText.textContent = `${itemValue}`
+        if (item) {
+            allItems.forEach((button) => {
+                
+                button.classList.remove('selected')
+            })
+            const { target } = event
+            target.classList.add('selected')
+        }
+    })
+}
 
 const customSelect = new CustomSelect('123', options)
 const mainContainer = document.querySelector('#container')
