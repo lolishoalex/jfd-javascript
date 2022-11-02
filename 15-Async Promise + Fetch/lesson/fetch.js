@@ -10,14 +10,36 @@ DELETE - удаление
 итд...
 */
 
-const TODOD_URL = 'https://jsonplaceholder.typicode.com/tods'
+const TODOD_URL = 'https://jsonplaceholder.typicode.com/todos'
 
 //выводим наши задачи в html
 const createTodoElem = (text) => {
-    
+    const todoElement = document.createElement('li');
+    const todoElementAncor = document.createElement('a');
+    todoElementAncor.href = '#';
+    todoElementAncor.textContent = text;
+    todoElement.append(todoElementAncor);
+
+    return todoElement;
 }
 
+//Реализация лоудера
+
+const toggleLoader = () => {
+    const loaderHtml = document.querySelector('#loader');
+    const isHidden = loaderHtml.hasAttribute('hidden');
+    if (isHidden) {
+        loaderHtml.removeAttribute('hidden');
+    } else {
+        loaderHtml.setAttribute('hidden', '');
+    }
+
+}
+
+const dataContainer = document.querySelector('#data-container')
+
 const getAllTodos = () => {
+    toggleLoader();
     const result = fetch(TODOD_URL, {
         method: 'GET',
     })
@@ -35,10 +57,17 @@ const getAllTodos = () => {
         })
         .then((todos) => {//при успешном выполнении наш fetch вернет нам список задачь
             console.log('todos', todos);
+            todos.forEach(todo => {
+                const todoHtml = createTodoElem(todo.title);
+                dataContainer.append(todoHtml)
+            });
         })
         .catch((err) => {//при асинхронных запрсах обязательно нужно обрабатывать ошибку
             console.log('err', err);
         })
-        //.finally тут не обязателен
+        .finally(() => {
+            toggleLoader();
+        })
 };
 
+getAllTodos();
