@@ -10,7 +10,7 @@ DELETE - удаление
 итд...
 */
 
-const TODOD_URL = 'https://jsonplaceholder.typicode.com/todos'
+const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
 
 //выводим наши задачи в html
 const createTodoElem = (text) => {
@@ -40,7 +40,7 @@ const dataContainer = document.querySelector('#data-container')
 
 const getAllTodos = () => {
     toggleLoader();
-    const result = fetch(TODOD_URL, {
+    const result = fetch(TODOS_URL, {
         method: 'GET',
     })
     console.log(result);
