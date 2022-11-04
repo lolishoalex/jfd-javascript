@@ -9,9 +9,10 @@ const FOTO_URL = 'https://jsonplaceholder.typicode.com/photos';
 // =================
 
 //выводим имена в html
-const createPhotoElem = (url, title) => {
+const createPhotoElem = (url, title, id) => {
     const photoElement = document.createElement('li');
     photoElement.className = 'photo-item';
+    photoElement.id = id;
     const photoElementImg = document.createElement('img');
     photoElementImg.className = 'photo-item__image';
     photoElementImg.src = url;
@@ -46,17 +47,15 @@ const getFastestLoadedPhoto = (ids) => {
     const requests = ids.map((id) => fetch(`${FOTO_URL}/${id}`));
     console.log(requests);
 
-    Promise.all(requests)
-        .then((responses) => {
-            const dataResults = responses.map((response) => response.json());
-            return Promise.all(dataResults);
+    Promise.race(requests)
+        .then((response) => {
+            console.log(response);
+            return response.json();
         })
-        .then((photos) => {
-            console.log('photos', photos);
-            photos.forEach(photo => {
-                const photoHtml = createPhotoElem(photo.url, photo.title);
-                dataContainer.append(photoHtml)
-            });
+        .then((photo) => {
+            console.log('photo', photo);
+            const photoHtml = createPhotoElem(photo.url, photo.title, photo.id);
+            dataContainer.append(photoHtml)
         })
         .catch((err) => {
             console.error('err', err);
@@ -64,15 +63,7 @@ const getFastestLoadedPhoto = (ids) => {
         .finally(() => {
             myLoader();
         })
-        Promise.race(requests)
-            .then((result) =>{
-                    console.log('result', result);
-            })
-            .catch((error) =>{
-                console.log('error', error);
-            })
-            .finally(() => {})
-    };
+};
 
 // Application
 // =================
