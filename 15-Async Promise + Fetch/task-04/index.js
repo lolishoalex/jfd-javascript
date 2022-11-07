@@ -2,9 +2,8 @@
 // =================
 
 //урл с данными
-const POSTDADA_URL = 'https://jsonplaceholder.typicode.com/posts/1';
-const POSTCOMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments?postId=1';
-
+const POSTDADA_URL = 'https://jsonplaceholder.typicode.com/posts/';
+const POSTCOMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments?postId=';
 
 // Functions
 // =================
@@ -13,28 +12,62 @@ const myBody = document.querySelector('body');
 const h1 = document.querySelector('h1');
 
 //html
-const createHtml = (title) => {
+const createHtmlPost = (title, body) => {
     myBody.append(h1);
 
     const postHtml = document.createElement('div');
     postHtml.className = 'post';
     postHtml.id = 'post';
 
-    const postH1 = document.createElement('h1');
-    postH1.className = 'post__title';
-    postH1.textContent = title;
-    postHtml.append(postH1);
+    const postTitle = document.createElement('h1');
+    postTitle.className = 'post__title';
+    postTitle.textContent = title;
+    postHtml.append(postTitle);
 
+    const postText = document.createElement('p');
+    postText.className = 'post__text';
+    postText.textContent = body;
+    postHtml.append(postText);
 
+    const postCommentsText = document.createElement('b');
+    postCommentsText.className = 'post__comments-text';
+    postCommentsText.textContent = 'post__comments-text';
+    postHtml.append(postCommentsText);
 
     return postHtml;
 }
 
+const createHtmlComment = (email, body) => {
+    const postHtml = document.querySelector('#post');
+    const commentsHtml = document.createElement('div');
+    commentsHtml.className = 'post__comments';
+    commentsHtml.textContent = 'post__comments';
+    postHtml.append(commentsHtml)
+
+    const postComment = document.createElement('div');
+    postComment.className = 'post-comment';
+    postComment.textContent = 'post-comment';
+    commentsHtml.append(postComment);
+
+    const postCommentAuthor = document.createElement('span');
+    postCommentAuthor.className = 'post-comment__author';
+    postCommentAuthor.textContent = email;
+    postComment.append(postCommentAuthor);
+
+    const postCommenText = document.createElement('span');
+    postCommenText.className = 'post-comment__text';
+    postCommenText.textContent = body;
+    postComment.append(postCommenText);
+
+    return commentsHtml;
+}
 
 
 //создаем ф-ю для fetch
 const renderPost = (postId) => {
-    const result = fetch(POSTDADA_URL, {
+
+    //POSTDADA_URL
+    const result = fetch(POSTDADA_URL + postId, {
         method: 'GET',
     })
     console.log(result);
@@ -44,10 +77,31 @@ const renderPost = (postId) => {
             console.log(response);
             return response.json();
         })
-        .then((postId) => {
-            console.log('postId', postId);
-            const postHtml = createHtml(postId.title);
+        .then((post) => {
+            console.log('post', post);
+            const postHtml = createHtmlPost(post.title, post.body);
             myBody.append(postHtml)
+        })
+        .catch((err) => {
+            console.error('err', err);
+        })
+        .finally(() => {})
+
+
+    //POSTCOMMENTS_URL
+    const PostCommentsUrlResult = fetch(POSTCOMMENTS_URL + postId, {
+        method: 'GET',
+    })
+    console.log(PostCommentsUrlResult);
+    
+    PostCommentsUrlResult
+        .then((response) => {
+            console.log(response);
+            return response.json();
+        })
+        .then((comments) => {
+            console.log('comments', comments);
+            const commentsHtml = createHtmlComment(comments.email, comments.body);
         })
         .catch((err) => {
             console.error('err', err);
