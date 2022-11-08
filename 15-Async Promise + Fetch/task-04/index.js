@@ -38,11 +38,10 @@ const createHtmlPost = (title, body) => {
 }
 
 const createHtmlComment = (email, body) => {
-    const postHtml = document.querySelector('#post');
     const commentsHtml = document.createElement('div');
     commentsHtml.className = 'post__comments';
     commentsHtml.textContent = 'post__comments';
-    postHtml.append(commentsHtml)
+    
 
     const postComment = document.createElement('div');
     postComment.className = 'post-comment';
@@ -93,7 +92,7 @@ const renderPost = (postId) => {
         method: 'GET',
     })
     console.log(PostCommentsUrlResult);
-    
+
     PostCommentsUrlResult
         .then((response) => {
             console.log(response);
@@ -101,7 +100,13 @@ const renderPost = (postId) => {
         })
         .then((comments) => {
             console.log('comments', comments);
-            const commentsHtml = createHtmlComment(comments.email, comments.body);
+            const commentsArr = comments.map((comment) => {
+                console.log(comment);
+                const postHtml = document.querySelector('#post');
+                const commentsHtml = createHtmlComment(comment.email, comment.body);
+                postHtml.append(commentsHtml)
+            });
+            return commentsArr;
         })
         .catch((err) => {
             console.error('err', err);
