@@ -8,9 +8,6 @@ const POSTCOMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments?postId='
 // Functions
 // =================
 
-const myBody = document.querySelector('body');
-const h1 = document.querySelector('h1');
-
 //html
 const createHtmlPost = (title, body) => {
     myBody.append(h1);
@@ -80,33 +77,32 @@ const renderPost = (postId) => {
             console.log('post', post);
             const postHtml = createHtmlPost(post.title, post.body);
             myBody.append(postHtml)
-        })
-        .catch((err) => {
-            console.error('err', err);
-        })
-        .finally(() => {})
 
+            //POSTCOMMENTS_URL
+            const PostCommentsUrlResult = fetch(POSTCOMMENTS_URL + postId, {
+                method: 'GET',
+            })
 
-    //POSTCOMMENTS_URL
-    const PostCommentsUrlResult = fetch(POSTCOMMENTS_URL + postId, {
-        method: 'GET',
-    })
-    console.log(PostCommentsUrlResult);
-
-    PostCommentsUrlResult
-        .then((response) => {
-            console.log(response);
-            return response.json();
-        })
-        .then((comments) => {
-            console.log('comments', comments);
-            const commentsArr = comments.map((comment) => {
-                console.log(comment);
-                const postHtml = document.querySelector('#post');
-                const commentsHtml = createHtmlComment(comment.email, comment.body);
-                postHtml.append(commentsHtml)
-            });
-            return commentsArr;
+            PostCommentsUrlResult
+                .then((response) => {
+                    console.log('response', response);
+                    return response.json();
+                })
+                .then((comments) => {
+                    const postToAppend = document.querySelector('#post');
+                    console.log('comments', comments);
+                    comments.forEach((comment) => {
+                        console.log(comment);
+                        const commentHtml = createHtmlComment(comment.email, comment.body);
+                        console.log('commentHtml', commentHtml);
+                        console.log('postToAppend', postToAppend);
+                        postToAppend.append(commentHtml)
+                    });
+                })
+                .catch((err) => {
+                    console.error('err', err);
+                })
+                .finally(() => {})
         })
         .catch((err) => {
             console.error('err', err);
@@ -116,4 +112,7 @@ const renderPost = (postId) => {
 
 // Application
 // =================
+const myBody = document.querySelector('body');
+const h1 = document.querySelector('h1');
+
 renderPost(1);
