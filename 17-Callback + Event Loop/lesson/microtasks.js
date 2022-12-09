@@ -11,27 +11,34 @@
 then, catch, finally
 */
 
-console.log('Lets start')
+// 1 Lets start
+// 2 I am in promise!
+// 3 Lets finish
+// 4 Returne result from promise
+// 5 Hello! I am in setTimeout!
+// 6 I am in setTimeout too, but waiting longer
+
+console.log('Lets start')//1
 
 setTimeout(() => {
-    console.log('Hello! I am in setTimeout!')
+    console.log('Hello! I am in setTimeout!')//5
 }, 1000)
 
 const promise = new Promise((resolve) => {
-    console.log('I am in promise!')
+    console.log('I am in promise!')//2
 
-    resolve('Returne result from promise')
+    resolve('Returne result from promise')//4 - обрабатывается тогда, когда мы прописываем then
 })
 
 setTimeout(() => {
-    console.log('I am in setTimeout too? but waiting longer')
+    console.log('I am in setTimeout too, but waiting longer')//6
 }, 2000)
 
 promise.then((result) => {
-    console.log(result)
+    console.log(result)//4
 })
 
-console.log('Lets finish')
+console.log('Lets finish')//3
 
 /* 
 Порядок вызова у Event loop с микрозадачами:
@@ -44,7 +51,8 @@ console.log('Lets finish')
 
 3 Вызвать все что есть в очереди вызовов
  - Callback queue
- 3я минута 
+ 
+ Когда появляется новая мАкрозадача, цикл повторяется.
 */
 
 
