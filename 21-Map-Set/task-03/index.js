@@ -5,8 +5,8 @@ let keys = map.keys();
 // Ошибка: keys.push -- это не функция
 keys.push("more"); */
 
-let map = new Map();
-map.set("name", "John");
-let keys = Array.from(map.keys());
-keys.push("more");
-alert(keys); // name, more
+// let map = new Map();
+// map.set("name", "John");
+// let keys = Array.from(map.keys());
+// keys.push("more");
+// alert(keys); // name, more
