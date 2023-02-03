@@ -1,0 +1,19 @@
+<%- include('../common/head')%>
+<body>
+    <header>
+        <%- include('../common/header')%>
+    </header>
+    <main>
+        <div class="conteiner">
+            <div class="col col-md-12">
+                <h2>My name is <%=students.name%></h2>
+                <p>My email is: <%=students.email%> and my age is <%=students.age%></p>
+                <p><%=students.description%></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <%- include('../common/footer')%>
+    </footer>
+</body>
+</html>
